@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
+
+xmlns:frascati="http://frascati.ow2.org/xmlns/sca/1.1" 
+
+xmlns:wsdli="http://www.w3.org/2004/08/wsdl-instance"
+
+name="ClientCom">
+
+	<component name="Client">
+
+		<service name="r">
+			<interface.java interface="java.lang.Runnable" />		
+		</service>
+
+		<reference name="iSort">
+			<frascati:binding.rmi host="localhost" serviceName="rmiService" port="1091"/>
+		</reference>
+
+		<implementation.java class="implementation.Client" />
+
+	</component>
+
+		<service name="r" promote="Client/r">
+			<interface.java interface="java.lang.Runnable" />
+		</service>
+
+</composite>
